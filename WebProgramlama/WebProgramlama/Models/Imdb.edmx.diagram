@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d23d2b30aa444e129b0d33d7e030f2ee" Name="Diagram1">
+        <EntityTypeShape EntityType="ImdbModel.FilmTur" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImdbModel.Galeri" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImdbModel.OyuncuFilm" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImdbModel.TurTip" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="ImdbModel.Uyruk" Width="1.5" PointX="1.5" PointY="13.25" IsExpanded="true" />
+        <AssociationConnector Association="ImdbModel.FK_FilmTur_TurTip" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="ImdbModel.Oyuncu" Width="1.5" PointX="3.75" PointY="12.375" />
+        <AssociationConnector Association="ImdbModel.FK_Oyuncu_Uyruk" />
+        <AssociationConnector Association="ImdbModel.FK_OyuncuFilm_Oyuncu" />
+        <EntityTypeShape EntityType="ImdbModel.Film" Width="1.5" PointX="0.75" PointY="3.625" />
+        <AssociationConnector Association="ImdbModel.FK_FilmTur_Film" />
+        <AssociationConnector Association="ImdbModel.FK_Galeri_Film" />
+        <AssociationConnector Association="ImdbModel.FK_OyuncuFilm_Film" />
+        <EntityTypeShape EntityType="ImdbModel.Uyelik" Width="1.5" PointX="5.375" PointY="0.75" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

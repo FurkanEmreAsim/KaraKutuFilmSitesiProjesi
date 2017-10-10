@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = @WebProgramlama.Resources.lang.Galeri;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@model WebProgramlama.Controllers.AnaSayfaDTO
+
+<section id="gallery">
+    <div class="overlay">
+    
+    </div>
+    <div class="section-wrapper wp8 delay-05s">
+        <h1 class="section-title">@WebProgramlama.Resources.lang.Galeri</h1>
+        <div id="owl-gallery">
+            @foreach (var item in Model.galeri)
+            {
+                if (item.GaleriFoto == null)
+                {
+                    <img style='width:100%; height:100%; max-height:400px;' src="~/assets/img/resimyok.png" alt="" />
+                }
+                else
+                {
+                    <div class="item"><a href="data:image/png;base64,@System.Convert.ToBase64String(item.GaleriFoto)" class="popup"><img src="data:image/png;base64,@System.Convert.ToBase64String(item.GaleriFoto)" alt=""></a></div>
+        
+                }
+            }    
+        </div><!-- /#owl-gallery -->
+    </div>
+</section><!-- /#gallery -->

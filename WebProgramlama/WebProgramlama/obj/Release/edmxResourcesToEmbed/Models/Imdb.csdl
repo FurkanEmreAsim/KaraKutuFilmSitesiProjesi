@@ -1,0 +1,203 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ImdbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="FilmTur">
+    <Key>
+      <PropertyRef Name="FilmTurID" />
+    </Key>
+    <Property Name="FilmTurID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="FilmID" Type="Int32" Nullable="false" />
+    <Property Name="TurID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="TurTip" Relationship="Self.FK_FilmTur_TurTip" FromRole="FilmTur" ToRole="TurTip" />
+    <NavigationProperty Name="Film" Relationship="ImdbModel.FK_FilmTur_Film" FromRole="FilmTur" ToRole="Film" />
+  </EntityType>
+  <EntityType Name="Galeri">
+    <Key>
+      <PropertyRef Name="GaleriID" />
+    </Key>
+    <Property Name="GaleriID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GaleriFoto" Type="Binary" MaxLength="Max" FixedLength="false" Nullable="false" />
+    <Property Name="FilmID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Film" Relationship="ImdbModel.FK_Galeri_Film" FromRole="Galeri" ToRole="Film" />
+  </EntityType>
+  <EntityType Name="OyuncuFilm">
+    <Key>
+      <PropertyRef Name="OyuncuFilmID" />
+    </Key>
+    <Property Name="OyuncuFilmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OyuncuID" Type="Int32" Nullable="false" />
+    <Property Name="FilmID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Oyuncu" Relationship="ImdbModel.FK_OyuncuFilm_Oyuncu" FromRole="OyuncuFilm" ToRole="Oyuncu" />
+    <NavigationProperty Name="Film" Relationship="ImdbModel.FK_OyuncuFilm_Film" FromRole="OyuncuFilm" ToRole="Film" />
+  </EntityType>
+  <EntityType Name="TurTip">
+    <Key>
+      <PropertyRef Name="TurTipID" />
+    </Key>
+    <Property Name="TurTipID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="FilmTur" Relationship="Self.FK_FilmTur_TurTip" FromRole="TurTip" ToRole="FilmTur" />
+  </EntityType>
+  <EntityType Name="Uyruk">
+    <Key>
+      <PropertyRef Name="UyrukID" />
+    </Key>
+    <Property Name="UyrukID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <NavigationProperty Name="Oyuncu" Relationship="ImdbModel.FK_Oyuncu_Uyruk" FromRole="Uyruk" ToRole="Oyuncu" />
+  </EntityType>
+  <Association Name="FK_FilmTur_TurTip">
+    <End Role="TurTip" Type="Self.TurTip" Multiplicity="1" />
+    <End Role="FilmTur" Type="Self.FilmTur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TurTip">
+        <PropertyRef Name="TurTipID" />
+      </Principal>
+      <Dependent Role="FilmTur">
+        <PropertyRef Name="TurID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ImdbEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="FilmTur" EntityType="Self.FilmTur" />
+    <EntitySet Name="Galeri" EntityType="Self.Galeri" />
+    <EntitySet Name="OyuncuFilm" EntityType="Self.OyuncuFilm" />
+    <EntitySet Name="TurTip" EntityType="Self.TurTip" />
+    <EntitySet Name="Uyruk" EntityType="Self.Uyruk" />
+    <AssociationSet Name="FK_FilmTur_TurTip" Association="Self.FK_FilmTur_TurTip">
+      <End Role="TurTip" EntitySet="TurTip" />
+      <End Role="FilmTur" EntitySet="FilmTur" />
+    </AssociationSet>
+    <EntitySet Name="Oyuncu" EntityType="ImdbModel.Oyuncu" />
+    <AssociationSet Name="FK_Oyuncu_Uyruk" Association="ImdbModel.FK_Oyuncu_Uyruk">
+      <End Role="Uyruk" EntitySet="Uyruk" />
+      <End Role="Oyuncu" EntitySet="Oyuncu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OyuncuFilm_Oyuncu" Association="ImdbModel.FK_OyuncuFilm_Oyuncu">
+      <End Role="Oyuncu" EntitySet="Oyuncu" />
+      <End Role="OyuncuFilm" EntitySet="OyuncuFilm" />
+    </AssociationSet>
+    <EntitySet Name="Film" EntityType="ImdbModel.Film" />
+    <AssociationSet Name="FK_FilmTur_Film" Association="ImdbModel.FK_FilmTur_Film">
+      <End Role="Film" EntitySet="Film" />
+      <End Role="FilmTur" EntitySet="FilmTur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Galeri_Film" Association="ImdbModel.FK_Galeri_Film">
+      <End Role="Film" EntitySet="Film" />
+      <End Role="Galeri" EntitySet="Galeri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OyuncuFilm_Film" Association="ImdbModel.FK_OyuncuFilm_Film">
+      <End Role="Film" EntitySet="Film" />
+      <End Role="OyuncuFilm" EntitySet="OyuncuFilm" />
+    </AssociationSet>
+    <EntitySet Name="Uyelik" EntityType="ImdbModel.Uyelik" />
+  </EntityContainer>
+  <EntityType Name="Oyuncu">
+    <Key>
+      <PropertyRef Name="OyuncuID" />
+    </Key>
+    <Property Name="OyuncuID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="DogumTarihi" Type="DateTime" Precision="3" />
+    <Property Name="OlumTarihi" Type="DateTime" Precision="3" />
+    <Property Name="UyrukID" Type="Int32" Nullable="false" />
+    <Property Name="Biyografi" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Fotograf" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Twitter" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="Uyruk" Relationship="ImdbModel.FK_Oyuncu_Uyruk" FromRole="Oyuncu" ToRole="Uyruk" />
+    <NavigationProperty Name="OyuncuFilm" Relationship="ImdbModel.FK_OyuncuFilm_Oyuncu" FromRole="Oyuncu" ToRole="OyuncuFilm" />
+  </EntityType>
+  <Association Name="FK_Oyuncu_Uyruk">
+    <End Type="ImdbModel.Uyruk" Role="Uyruk" Multiplicity="1" />
+    <End Type="ImdbModel.Oyuncu" Role="Oyuncu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uyruk">
+        <PropertyRef Name="UyrukID" />
+      </Principal>
+      <Dependent Role="Oyuncu">
+        <PropertyRef Name="UyrukID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OyuncuFilm_Oyuncu">
+    <End Type="ImdbModel.Oyuncu" Role="Oyuncu" Multiplicity="1" />
+    <End Type="ImdbModel.OyuncuFilm" Role="OyuncuFilm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oyuncu">
+        <PropertyRef Name="OyuncuID" />
+      </Principal>
+      <Dependent Role="OyuncuFilm">
+        <PropertyRef Name="OyuncuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Film">
+    <Key>
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="FilmID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" Nullable="false" MaxLength="75" FixedLength="false" Unicode="false" />
+    <Property Name="CikisTarihi" Type="DateTime" Precision="3" />
+    <Property Name="Slogan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Sure" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Butce" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="Konusu" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Fotograf" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="Facebook" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Yas" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="FilmTur" Relationship="ImdbModel.FK_FilmTur_Film" FromRole="Film" ToRole="FilmTur" />
+    <NavigationProperty Name="Galeri" Relationship="ImdbModel.FK_Galeri_Film" FromRole="Film" ToRole="Galeri" />
+    <NavigationProperty Name="OyuncuFilm" Relationship="ImdbModel.FK_OyuncuFilm_Film" FromRole="Film" ToRole="OyuncuFilm" />
+  </EntityType>
+  <Association Name="FK_FilmTur_Film">
+    <End Type="ImdbModel.Film" Role="Film" Multiplicity="1" />
+    <End Type="ImdbModel.FilmTur" Role="FilmTur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="FilmTur">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Galeri_Film">
+    <End Type="ImdbModel.Film" Role="Film" Multiplicity="1" />
+    <End Type="ImdbModel.Galeri" Role="Galeri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="Galeri">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OyuncuFilm_Film">
+    <End Type="ImdbModel.Film" Role="Film" Multiplicity="1" />
+    <End Type="ImdbModel.OyuncuFilm" Role="OyuncuFilm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="OyuncuFilm">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="Uyelik">
+    <Key>
+      <PropertyRef Name="UyelikID" />
+    </Key>
+    <Property Name="UyelikID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Soyad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Email" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Sifre" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="Aktivasyon" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Onay" Type="Boolean" />
+    <Property Name="KayitTarihi" Type="DateTime" Precision="3" />
+  </EntityType>
+</Schema>

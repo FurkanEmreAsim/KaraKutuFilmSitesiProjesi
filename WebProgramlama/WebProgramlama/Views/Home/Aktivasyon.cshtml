@@ -1,0 +1,23 @@
+﻿@{
+    ViewBag.Title = "Aktivasyon";
+}
+<section id="actors">
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                <h1 class="section-title"></h1>
+                <div id="owl-actors" class="owl-carousel owl-theme">
+
+                    <div class="alert alert-success" style="margin:10px 0 -20px 0;">
+                        <h3>Üyeliğiniz aktifleştirilmiştir....</h3>
+                        <p>@Html.ActionLink("Üye girişi yapmak için lütfen tıklayınız.", "Login", "Home", null, new { @style = "color:#8bb029;" })</p>
+                    </div>
+
+                </div>
+            </div><!-- /.col-lg-12 -->
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+</section>
+<section id="actors"></section>

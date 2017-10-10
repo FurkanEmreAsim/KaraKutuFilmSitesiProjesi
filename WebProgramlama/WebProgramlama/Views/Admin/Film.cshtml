@@ -1,0 +1,67 @@
+﻿@{
+    ViewBag.Title = "Film";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<WebProgramlama.Models.Film>
+
+<div class="panel panel-gray">
+    <div class="panel-heading">
+        <div class="col-md-12">
+            <h4>Film</h4>
+            <a href="javascript:;" data-toggle="tooltip modal" data-width="4" data-source="/Admin/FilmEkle" data-title="Yeni Film" data-function="CloseModal" class="btn btn-success btn-sm tooltips pull-right" style="margin-top:6px;" title="Yeni Film"><i class="fa fa-plus">&nbsp;&nbsp; Yeni Film</i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">Ad</th>
+                            <th class="col-md-1">Slogan</th>
+                            <th class="col-md-24">Konusu</th>
+                            <th class="col-md-1">Çıkış Tarihi</th>
+                            <th class="col-md-1">Süre</th>
+                            <th class="col-md-1">Bütçe</th>
+                            <th class="col-md-1">Yaş</th>
+                            <th class="col-md-1">Fotoğraf</th>
+                            <th class="col-md-1">Facebook</th>
+                            <th class="col-md-12"></th>
+                            <th class="col-md-12"></th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.Ad</td>
+                            <td>@item.Slogan</td>
+                            <td>@item.Konusu</td>
+                            <td>@String.Format("{0:d}", @item.CikisTarihi)</td>
+                            <td>@item.Sure</td>
+                            <td>@item.Butce</td>
+                            <td>@item.Yas</td>
+                            @if (item.Fotograf == null)
+                            {
+                                <td><img style='width:100%; height:auto; border:solid 1px #cccccc;' src="~/assets/img/resimyok.png" alt="" /></td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <img style='width:100%; height:auto; border:solid 1px #cccccc;' src="data:image/png;base64,@System.Convert.ToBase64String(item.Fotograf)" />
+                                </td>
+                            }
+                            <td>@item.Facebook</td>
+                            <td><a href='javascript:;' data-toggle='tooltip modal' data-source="/Admin/FilmDuzenle?FilmID=@item.FilmID" data-title='Film Düzenle' data-function='CloseModal' data-width='4' class='btn btn-xs btn-info tooltips' title='Düzenle'>Düzenle</a></td>
+                            <td><a href="/Admin/FilmSil?FilmID=@item.FilmID" class='btn btn-xs btn-danger tooltips' title='Sil'>Sil</a></td>
+                        </tr>
+                    }
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

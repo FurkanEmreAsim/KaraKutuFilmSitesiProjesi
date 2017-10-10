@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="ImdbModelStoreContainer" CdmEntityContainer="ImdbEntities">
+    <EntitySetMapping Name="FilmTur">
+      <EntityTypeMapping TypeName="ImdbModel.FilmTur">
+        <MappingFragment StoreEntitySet="FilmTur">
+          <ScalarProperty Name="FilmTurID" ColumnName="FilmTurID" />
+          <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+          <ScalarProperty Name="TurID" ColumnName="TurID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Galeri">
+      <EntityTypeMapping TypeName="ImdbModel.Galeri">
+        <MappingFragment StoreEntitySet="Galeri">
+          <ScalarProperty Name="GaleriID" ColumnName="GaleriID" />
+          <ScalarProperty Name="GaleriFoto" ColumnName="GaleriFoto" />
+          <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OyuncuFilm">
+      <EntityTypeMapping TypeName="ImdbModel.OyuncuFilm">
+        <MappingFragment StoreEntitySet="OyuncuFilm">
+          <ScalarProperty Name="OyuncuFilmID" ColumnName="OyuncuFilmID" />
+          <ScalarProperty Name="OyuncuID" ColumnName="OyuncuID" />
+          <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="TurTip">
+      <EntityTypeMapping TypeName="ImdbModel.TurTip">
+        <MappingFragment StoreEntitySet="TurTip">
+          <ScalarProperty Name="TurTipID" ColumnName="TurTipID" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uyruk">
+      <EntityTypeMapping TypeName="ImdbModel.Uyruk">
+        <MappingFragment StoreEntitySet="Uyruk">
+          <ScalarProperty Name="UyrukID" ColumnName="UyrukID" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Oyuncu">
+      <EntityTypeMapping TypeName="ImdbModel.Oyuncu">
+        <MappingFragment StoreEntitySet="Oyuncu">
+          <ScalarProperty Name="Twitter" ColumnName="Twitter" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="Fotograf" ColumnName="Fotograf" />
+          <ScalarProperty Name="Biyografi" ColumnName="Biyografi" />
+          <ScalarProperty Name="UyrukID" ColumnName="UyrukID" />
+          <ScalarProperty Name="OlumTarihi" ColumnName="OlumTarihi" />
+          <ScalarProperty Name="DogumTarihi" ColumnName="DogumTarihi" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="OyuncuID" ColumnName="OyuncuID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Film">
+      <EntityTypeMapping TypeName="ImdbModel.Film">
+        <MappingFragment StoreEntitySet="Film">
+          <ScalarProperty Name="Yas" ColumnName="Yas" />
+          <ScalarProperty Name="Facebook" ColumnName="Facebook" />
+          <ScalarProperty Name="Fotograf" ColumnName="Fotograf" />
+          <ScalarProperty Name="Konusu" ColumnName="Konusu" />
+          <ScalarProperty Name="Butce" ColumnName="Butce" />
+          <ScalarProperty Name="Sure" ColumnName="Sure" />
+          <ScalarProperty Name="Slogan" ColumnName="Slogan" />
+          <ScalarProperty Name="CikisTarihi" ColumnName="CikisTarihi" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="FilmID" ColumnName="FilmID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Uyelik">
+      <EntityTypeMapping TypeName="ImdbModel.Uyelik">
+        <MappingFragment StoreEntitySet="Uyelik">
+          <ScalarProperty Name="KayitTarihi" ColumnName="KayitTarihi" />
+          <ScalarProperty Name="Onay" ColumnName="Onay" />
+          <ScalarProperty Name="Aktivasyon" ColumnName="Aktivasyon" />
+          <ScalarProperty Name="Role" ColumnName="Role" />
+          <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Soyad" ColumnName="Soyad" />
+          <ScalarProperty Name="Ad" ColumnName="Ad" />
+          <ScalarProperty Name="UyelikID" ColumnName="UyelikID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

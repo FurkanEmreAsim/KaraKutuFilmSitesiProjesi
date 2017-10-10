@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Galeri";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<WebProgramlama.Models.Galeri>
+
+<div class="panel panel-gray">
+    <div class="panel-heading">
+        <div class="col-md-12">
+            <h4>Galeri</h4>
+            <a href="javascript:;" data-toggle="tooltip modal" data-width="4" data-source="/Admin/GaleriEkle" data-title="Yeni Resim" data-function="CloseModal" class="btn btn-success btn-sm tooltips pull-right" style="margin-top:6px;" title="Yeni Resim"><i class="fa fa-plus">&nbsp;&nbsp; Yeni Resim</i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">Fotoğraf</th>
+                            <th class="col-md-1">Film</th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            @if (item.GaleriFoto == null)
+                            {
+                                <td><img style='width:100%; height:auto; border:solid 1px #cccccc;' src="~/assets/img/resimyok.png" alt="" /></td>
+                            }
+                            else
+                            {
+                                <td>
+                                    <img style='width:100%; height:auto; border:solid 1px #cccccc;' src="data:image/png;base64,@System.Convert.ToBase64String(item.GaleriFoto)" />
+                                </td>
+                            }
+                            <td>@item.Film.Ad</td>
+                            <td><a href='javascript:;' data-toggle='tooltip modal' data-source="/Admin/GaleriDuzenle?GaleriID=@item.GaleriID" data-title='Galeri Düzenle' data-function='CloseModal' data-width='4' class='btn btn-xs btn-info tooltips' title='Düzenle'>Düzenle</a></td>
+                            <td><a href="/Admin/GaleriSil?GaleriID=@item.GaleriID" class='btn btn-xs btn-danger tooltips' title='Sil'>Sil</a></td>
+                        </tr>
+                    }
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

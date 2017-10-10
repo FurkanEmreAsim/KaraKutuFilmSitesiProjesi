@@ -1,0 +1,103 @@
+﻿@{
+    ViewBag.Title = @WebProgramlama.Resources.lang.Hakkında;
+}
+@model WebProgramlama.Controllers.AboutDto
+
+    <section id="intro">
+        <div class="video-content">
+            <div class="overlay">
+                <div class="container-wrapper">
+                    <div class="container">
+                        <div class="col-md-12 wp1 delay-05s">
+                            <div class="intro-info-wrapper">
+
+                                <h1 class="text-center">@Model.film.Ad <span class="text-color font-light"></span></h1>
+                                <div id="owl-intro" class="owl-carousel owl-theme">
+                                    @if (@Model.film.CikisTarihi > DateTime.Now)
+                                    {
+                                        <div class="item.Film">
+                                            <p class="font-similar">Coming soon in @String.Format("{0:d}", @Model.film.CikisTarihi) <br> Best Movie</p>
+                                        </div>
+                                        <div class="item.Film">
+                                            <p class="font-similar">@Model.film.Slogan </p>
+                                        </div>
+
+                                    }
+                                    else
+                                    {
+                                        <div class="item.Film">
+                                           <p class="font-similar">@Model.film.Slogan</p>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- /.intro-info-wrapper -->
+
+                    <div class="media-btns buttons page-scroll">
+                        <a class="btn btn-default about-btn" href="#about">@WebProgramlama.Resources.lang.FilmHakkinda<i class="fa fa-chevron-right"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="video-container">
+                <div id="player"></div>
+            </div>
+        </div>
+    </section><!-- /#intro -->
+    <!-- About Section -->
+
+    <section id="about">
+        <div class="more page-scroll" id="more">
+            <a href="#about"><i class="fa fa-angle-down"></i></a>
+        </div>
+
+        <div class="container wp2">
+            <div class="row">
+                <div class="col-lg-6 wp2 delay-05s">
+                    <div class="movie-disc">
+                        <div class="movie-avatar">
+                            <div class="movie-avatar-img">
+                                @if (Model.film.Fotograf == null)
+                                {
+                                    <img style='width:100%; height:100%;' src="~/assets/img/resimyok.png" alt="" />
+                                }
+                                else
+                                {
+                                    <img src="data:image/png;base64,@System.Convert.ToBase64String(Model.film.Fotograf)" style="height:100%; " alt="Slide 1" />
+                                }
+                            </div><!-- /.movie-avatar-img -->
+                        </div><!-- /.movie-disc -->
+                    </div><!-- /.movie-avatar -->
+                </div><!-- /.col-lg-6 -->
+
+                <div class="col-lg-6 wp2 delay-1s">
+                    <h2>@Model.film.Ad</h2>
+                    <h4 class="sub-text">
+                        @WebProgramlama.Resources.lang.CikisTarih: @String.Format("{0:d}", Model.film.CikisTarihi) <br>
+                    </h4>
+
+                    <table class="text-dark">
+                        <tr><td>@WebProgramlama.Resources.lang.Yil </td>  <td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td><td>@String.Format("{0:yyyy}", @Model.film.CikisTarihi)</td></tr>
+                        <tr><td>@WebProgramlama.Resources.lang.Slogan </td><td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td><td>@Model.film.Slogan</td></tr>
+                        <tr>
+                            <td>@WebProgramlama.Resources.lang.Tur </td>
+                            <td>
+                                &nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;
+                            </td>
+                            <td>
+                                @Model.filmTurleri
+                            </td>
+                        </tr>
+                        <tr><td>@WebProgramlama.Resources.lang.Zaman </td><td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td><td>@Model.film.Sure</td></tr>
+                        <tr><td>@WebProgramlama.Resources.lang.Butce </td><td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td><td>@Model.film.Butce</td></tr>
+                        <tr><td>@WebProgramlama.Resources.lang.Yas   </td><td>&nbsp;&nbsp;&nbsp;:&nbsp;&nbsp;&nbsp;</td><td><span class="detailed-text">@Model.film.Yas</span></td></tr>
+                    </table>
+                    <br>
+                    <p>
+                        @Model.film.Konusu
+                    </p>
+                    <br>
+                </div><!-- /.col-lg-6 -->
+            </div><!-- /.row -->
+        </div><!-- /.container -->
+    </section><!-- /#about -->

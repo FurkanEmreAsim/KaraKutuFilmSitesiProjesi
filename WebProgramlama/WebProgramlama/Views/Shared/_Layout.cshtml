@@ -1,0 +1,92 @@
+﻿<!DOCTYPE html>
+<html class="no-js" lang="en-gb">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>@ViewBag.Title -  @WebProgramlama.Resources.lang.WebSite</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Scripts/cssscript")
+
+</head>
+<body id="page-top" data-spy="scroll" data-target=".navbar-custom">
+    <!-- Navigation -->
+
+    <nav class="navbar navbar-custom navbar-fixed-top wp1" role="navigation">
+        <div class="container">
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-main-collapse">
+                    <i class="fa fa-bars"></i>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Film")">
+                    <i class="fa fa-video-camera"></i> @WebProgramlama.Resources.lang.WebSite
+                </a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+            <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
+                <ul class="nav navbar-nav">
+                    <!-- Hidden li included to remove active class from about link when scrolled up past about section -->
+                    <li class="hidden">
+                        <a href="#page-top"></a>
+                    </li>
+                    <li class="page-scroll">
+
+                        @Html.ActionLink(WebProgramlama.Resources.lang.Film, "Index", "Film")
+                    </li>
+                    <li class="page-scroll">
+                        @Html.ActionLink(WebProgramlama.Resources.lang.Hakkında, "About", "Home")
+                    </li>
+                    <li class="page-scroll">
+                        @Html.ActionLink(WebProgramlama.Resources.lang.Galeri, "Gallery", "Home")
+                    </li>
+                    <li class="page-scroll">
+                        @Html.ActionLink(WebProgramlama.Resources.lang.Oyuncu, "Player", "Home")
+                    </li>
+                    <li class="page-scroll">
+                        @Html.ActionLink(WebProgramlama.Resources.lang.Iletisim, "Index", "Contact")
+                    </li>
+                    <li class="page-scroll">
+                        @Html.Partial("_LoginPartial")
+                    </li>
+                    @if (HttpContext.Current.Session["eposta"] != null)
+                    {
+                        if (WebProgramlama.Controllers.HomeController.RoleGetir(HttpContext.Current.Session["eposta"].ToString()) == "Admin")
+                        {
+                            <li>@Html.ActionLink("Admin", "Film", "Admin", null, new { target = "_blank" })</li>
+                        }
+                    }
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+
+        <!-- /.container -->
+    </nav>
+
+    <div>
+     
+
+        @RenderBody()
+        <footer id="footer" class="midnight-blue">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-6">
+                            &copy; 2015 <a target="_blank" href="http://shapebootstrap.net/" title="Free Twitter Bootstrap WordPress Themes and HTML templates">Kara Kutu</a>.@WebProgramlama.Resources.lang.Hak
+                        </div>
+                </div>
+            </div>  
+            
+        </footer><!--/#footer-->
+
+    </div>
+    <div class="footer-line"></div>
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryval")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

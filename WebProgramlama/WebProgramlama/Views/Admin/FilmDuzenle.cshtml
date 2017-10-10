@@ -1,0 +1,123 @@
+﻿@{
+    Layout = null;
+}
+
+
+<link href="~/assets/plugins/form-datepicker/css/datepicker.css" rel="stylesheet" />
+<script src="~/assets/plugins/form-datepicker/js/bootstrap-datepicker.js"></script>
+
+@model WebProgramlama.Models.Film
+
+<div class="row">
+    <div class="col-sm-12">
+        @using (Html.BeginForm("FilmDuzenle", "Admin", FormMethod.Post, new { @class = "form-horizontal", enctype = "multipart/form-data" }))
+        {
+            @Html.HiddenFor(m => m.FilmID)
+            <div class="row">
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">Ad</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">Slogan</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Slogan, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">Konusu</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Konusu, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">Çıkış Tarihi</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.CikisTarihi, new { @class = "form-control", style = "width:250px;" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">Süre</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Sure, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">Bütçe</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Butce, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">Yaş</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Yas, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label"></label>
+                        <div class="col-sm-10">
+                            @if (Model.Fotograf == null)
+                            {
+                                <img style='width:100%; height:auto; border:solid 1px #cccccc;' src="~/assets/img/resimyok.png" alt="" />
+                            }
+                            else
+                            {
+                                <img style='width:100%; height:auto; border:solid 1px #cccccc;' src="data:image/png;base64,@System.Convert.ToBase64String(Model.Fotograf)" alt="" />
+                            }
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">Fotoğraf</label>
+                        <div class="col-sm-10">
+                            <input type="file" name="file" class="form-control" />
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-12">
+                        <label class="col-sm-2 control-label">Facebook</label>
+                        <div class="col-sm-10">
+                            @Html.TextBoxFor(m => m.Facebook, new { @class = "form-control" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <div class="row">
+                    <div class="col-sm-9 col-sm-offset-3">
+                        <div class="btn-toolbar pull-right">
+                            <input type="submit" value="Güncelle" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#CikisTarihi").datepicker({ dateFormat: 'dd-MM-yyyy' });
+    });
+</script>

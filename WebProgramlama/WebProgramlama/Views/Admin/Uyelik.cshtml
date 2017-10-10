@@ -1,0 +1,56 @@
+﻿@{
+    ViewBag.Title = "Üyelik";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<WebProgramlama.Models.Uyelik>
+
+<div class="panel panel-gray">
+    <div class="panel-heading">
+        <div class="col-md-12">
+            <h4>Üyelik</h4>
+            <a href="javascript:;" data-toggle="tooltip modal" data-width="4" data-source="/Admin/UyelikEkle" data-title="Yeni Üyelik" data-function="CloseModal" class="btn btn-success btn-sm tooltips pull-right" style="margin-top:6px;" title="Yeni Film"><i class="fa fa-plus">&nbsp;&nbsp; Yeni Üyelik</i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">Ad</th>
+                            <th class="col-md-1">Soyad</th>
+                            <th class="col-md-1">Email</th>
+                            <th class="col-md-1">Şifre</th>
+                            <th class="col-md-1">Role</th>
+                            <th class="col-md-1">Aktivasyon</th>
+                            <th class="col-md-1">Onay</th>
+                            <th class="col-md-1">Kayit Tarihi</th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.Ad</td>
+                            <td>@item.Soyad</td>
+                            <td>@item.Email</td>
+                            <td>@item.Sifre</td>
+                            <td>@item.Role</td>
+                            <td>@item.Aktivasyon</td>
+                            <td>@item.Onay</td>
+                            <td>@String.Format("{0:d}", @item.KayitTarihi)</td>
+                            <td><a href='javascript:;' data-toggle='tooltip modal' data-source="/Admin/UyelikDuzenle?UyelikID=@item.UyelikID" data-title='Uyelik Düzenle' data-function='CloseModal' data-width='4' class='btn btn-xs btn-info tooltips' title='Düzenle'>Düzenle</a></td>
+                            <td><a href="/Admin/UyelikSil?UyelikID=@item.UyelikID" class='btn btn-xs btn-danger tooltips' title='Sil'>Sil</a></td>
+                        </tr>
+                    }
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

@@ -1,0 +1,46 @@
+﻿@{
+    ViewBag.Title = "Oyuncu Film";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<WebProgramlama.Models.OyuncuFilm>
+
+<div class="panel panel-gray">
+    <div class="panel-heading">
+        <div class="col-md-12">
+            <h4>Oyuncu Film</h4>
+            <a href="javascript:;" data-toggle="tooltip modal" data-width="4" data-source="/Admin/OyuncuFilmEkle" data-title="Yeni Oyuncu" data-function="CloseModal" class="btn btn-success btn-sm tooltips pull-right" style="margin-top:6px;" title="Yeni Oyuncu"><i class="fa fa-plus">&nbsp;&nbsp; Yeni Oyuncu Film</i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-1">Oyuncu</th>
+                            <th class="col-md-1">Film</th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+
+                        <tr>
+                            <td>@item.Oyuncu.Ad  @item.Oyuncu.Soyad</td>
+                            <td>@item.Film.Ad</td>
+                            <td><a href='javascript:;' data-toggle='tooltip modal' data-source="/Admin/OyuncuFilmDuzenle?OyuncuFilmID=@item.OyuncuFilmID" data-title='Oyuncu Film Düzenle' data-function='CloseModal' data-width='4' class='btn btn-xs btn-info tooltips' title='Düzenle'>Düzenle</a></td>
+                            <td><a href="/Admin/OyuncuFilmSil?OyuncuFilmID=@item.OyuncuFilmID" class='btn btn-xs btn-danger tooltips' title='Sil'>Sil</a></td>
+                        </tr>
+                    }
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

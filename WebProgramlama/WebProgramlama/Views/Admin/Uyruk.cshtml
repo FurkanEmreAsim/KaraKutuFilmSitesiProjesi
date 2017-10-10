@@ -1,0 +1,41 @@
+﻿@{
+    ViewBag.Title = "Uyruk";
+    Layout = "~/Views/Shared/AdminLayout.cshtml";
+}
+
+@model List<WebProgramlama.Models.Uyruk>
+
+<div class="panel panel-gray">
+    <div class="panel-heading">
+        <div class="col-md-12">
+            <h4>Uyruk</h4>
+            <a href="javascript:;" data-toggle="tooltip modal" data-width="4" data-source="/Admin/UyrukEkle" data-title="Yeni Uyruk" data-function="CloseModal" class="btn btn-success btn-sm tooltips pull-right" style="margin-top:6px;" title="Yeni Uyruk"><i class="fa fa-plus">&nbsp;&nbsp; Uyruk</i></a>
+        </div>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th class="col-md-10">Uyruk</th>
+                            <th class="col-md-1"></th>
+                            <th class="col-md-1"></th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Ad</td>
+                            <td><a href='javascript:;' data-toggle='tooltip modal' data-source="/Admin/UyrukDuzenle?UyrukID=@item.UyrukID" data-title='Uyruk Düzenle' data-function='CloseModal' data-width='4' class='btn btn-xs btn-info tooltips' title='Düzenle'>Düzenle</a></td>
+                            <td><a href="/Admin/UyrukSil?UyrukID=@item.UyrukID" class='btn btn-xs btn-danger tooltips' title='Sil'>Sil</a></td>
+                        </tr>
+                    }
+                    <tbody></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+

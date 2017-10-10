@@ -1,0 +1,76 @@
+﻿@model WebProgramlama.Models.RegisterViewModel
+@{
+    ViewBag.Title = @WebProgramlama.Resources.lang.UyeGiris;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section id="actors">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-6">
+                    <div class="widget-item">
+                        <div class="request-information">
+                            <h4 class="widget-title">@WebProgramlama.Resources.lang.UyeOl</h4>
+                            <div class="request-info clearfix">
+                                <br/>
+                                @using (Html.BeginForm("UyeEkle", "Home", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    <hr />
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@WebProgramlama.Resources.lang.Ad</label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.Ad, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@WebProgramlama.Resources.lang.Soyad</label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.Soyad, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@WebProgramlama.Resources.lang.Eposta</label>
+                                        <div class="col-md-10">
+                                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="col-sm-2 control-label">@WebProgramlama.Resources.lang.Sifre</label>
+                                        <div class="col-md-10">
+                                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="col-md-offset-2 col-md-10">
+                                            <input type="submit" class="btn btn-primary" value="Üye Ol" />
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+<section id="actors">
+    <div class="container">
+        <div class="row">
+            <div class="container">
+                <div id="owl-actors" class="owl-carousel owl-theme">
+
+                    <br />
+                </div>
+            </div><!-- /.col-lg-12 -->
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+</section>
+
+

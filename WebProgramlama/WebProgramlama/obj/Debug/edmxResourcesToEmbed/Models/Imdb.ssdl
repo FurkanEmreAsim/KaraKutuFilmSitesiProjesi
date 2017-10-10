@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="ImdbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Film">
+    <Key>
+      <PropertyRef Name="FilmID" />
+    </Key>
+    <Property Name="FilmID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="75" Nullable="false" />
+    <Property Name="CikisTarihi" Type="datetime" />
+    <Property Name="Slogan" Type="varchar(max)" Nullable="false" />
+    <Property Name="Sure" Type="varchar" MaxLength="25" Nullable="false" />
+    <Property Name="Butce" Type="varchar" MaxLength="25" />
+    <Property Name="Konusu" Type="varchar(max)" Nullable="false" />
+    <Property Name="Fotograf" Type="image" />
+    <Property Name="Facebook" Type="varchar(max)" />
+    <Property Name="Yas" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="FilmTur">
+    <Key>
+      <PropertyRef Name="FilmTurID" />
+    </Key>
+    <Property Name="FilmTurID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="FilmID" Type="int" Nullable="false" />
+    <Property Name="TurID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Galeri">
+    <Key>
+      <PropertyRef Name="GaleriID" />
+    </Key>
+    <Property Name="GaleriID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GaleriFoto" Type="image" Nullable="false" />
+    <Property Name="FilmID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Oyuncu">
+    <Key>
+      <PropertyRef Name="OyuncuID" />
+    </Key>
+    <Property Name="OyuncuID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Soyad" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DogumTarihi" Type="datetime" />
+    <Property Name="OlumTarihi" Type="datetime" />
+    <Property Name="UyrukID" Type="int" Nullable="false" />
+    <Property Name="Biyografi" Type="varchar(max)" Nullable="false" />
+    <Property Name="Fotograf" Type="image" />
+    <Property Name="Facebook" Type="varchar(max)" />
+    <Property Name="Twitter" Type="varchar(max)" />
+  </EntityType>
+  <EntityType Name="OyuncuFilm">
+    <Key>
+      <PropertyRef Name="OyuncuFilmID" />
+    </Key>
+    <Property Name="OyuncuFilmID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OyuncuID" Type="int" Nullable="false" />
+    <Property Name="FilmID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TurTip">
+    <Key>
+      <PropertyRef Name="TurTipID" />
+    </Key>
+    <Property Name="TurTipID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Uyelik">
+    <Key>
+      <PropertyRef Name="UyelikID" />
+    </Key>
+    <Property Name="UyelikID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" />
+    <Property Name="Soyad" Type="varchar" MaxLength="50" />
+    <Property Name="Email" Type="varchar(max)" />
+    <Property Name="Sifre" Type="varchar(max)" />
+    <Property Name="Role" Type="varchar" MaxLength="10" />
+    <Property Name="Aktivasyon" Type="varchar" MaxLength="50" />
+    <Property Name="Onay" Type="bit" />
+    <Property Name="KayitTarihi" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Uyruk">
+    <Key>
+      <PropertyRef Name="UyrukID" />
+    </Key>
+    <Property Name="UyrukID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Ad" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_FilmTur_Film">
+    <End Role="Film" Type="Self.Film" Multiplicity="1" />
+    <End Role="FilmTur" Type="Self.FilmTur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="FilmTur">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FilmTur_TurTip">
+    <End Role="TurTip" Type="Self.TurTip" Multiplicity="1" />
+    <End Role="FilmTur" Type="Self.FilmTur" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TurTip">
+        <PropertyRef Name="TurTipID" />
+      </Principal>
+      <Dependent Role="FilmTur">
+        <PropertyRef Name="TurID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Galeri_Film">
+    <End Role="Film" Type="Self.Film" Multiplicity="1" />
+    <End Role="Galeri" Type="Self.Galeri" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="Galeri">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Oyuncu_Uyruk">
+    <End Role="Uyruk" Type="Self.Uyruk" Multiplicity="1" />
+    <End Role="Oyuncu" Type="Self.Oyuncu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Uyruk">
+        <PropertyRef Name="UyrukID" />
+      </Principal>
+      <Dependent Role="Oyuncu">
+        <PropertyRef Name="UyrukID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OyuncuFilm_Film">
+    <End Role="Film" Type="Self.Film" Multiplicity="1" />
+    <End Role="OyuncuFilm" Type="Self.OyuncuFilm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Film">
+        <PropertyRef Name="FilmID" />
+      </Principal>
+      <Dependent Role="OyuncuFilm">
+        <PropertyRef Name="FilmID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OyuncuFilm_Oyuncu">
+    <End Role="Oyuncu" Type="Self.Oyuncu" Multiplicity="1" />
+    <End Role="OyuncuFilm" Type="Self.OyuncuFilm" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Oyuncu">
+        <PropertyRef Name="OyuncuID" />
+      </Principal>
+      <Dependent Role="OyuncuFilm">
+        <PropertyRef Name="OyuncuID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="ImdbModelStoreContainer">
+    <EntitySet Name="Film" EntityType="Self.Film" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FilmTur" EntityType="Self.FilmTur" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Galeri" EntityType="Self.Galeri" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Oyuncu" EntityType="Self.Oyuncu" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="OyuncuFilm" EntityType="Self.OyuncuFilm" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TurTip" EntityType="Self.TurTip" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uyelik" EntityType="Self.Uyelik" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Uyruk" EntityType="Self.Uyruk" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_FilmTur_Film" Association="Self.FK_FilmTur_Film">
+      <End Role="Film" EntitySet="Film" />
+      <End Role="FilmTur" EntitySet="FilmTur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FilmTur_TurTip" Association="Self.FK_FilmTur_TurTip">
+      <End Role="TurTip" EntitySet="TurTip" />
+      <End Role="FilmTur" EntitySet="FilmTur" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Galeri_Film" Association="Self.FK_Galeri_Film">
+      <End Role="Film" EntitySet="Film" />
+      <End Role="Galeri" EntitySet="Galeri" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Oyuncu_Uyruk" Association="Self.FK_Oyuncu_Uyruk">
+      <End Role="Uyruk" EntitySet="Uyruk" />
+      <End Role="Oyuncu" EntitySet="Oyuncu" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OyuncuFilm_Film" Association="Self.FK_OyuncuFilm_Film">
+      <End Role="Film" EntitySet="Film" />
+      <End Role="OyuncuFilm" EntitySet="OyuncuFilm" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OyuncuFilm_Oyuncu" Association="Self.FK_OyuncuFilm_Oyuncu">
+      <End Role="Oyuncu" EntitySet="Oyuncu" />
+      <End Role="OyuncuFilm" EntitySet="OyuncuFilm" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
